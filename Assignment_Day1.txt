@@ -1,4 +1,3 @@
-Name_Kalpesh Hirdekar
 
 
 //1)display a table of a particular number
