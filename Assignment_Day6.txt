@@ -1,0 +1,585 @@
+/*
+Q.1) On developer side:
+
+create interface "Shape" with "void draw();" method.
+
+now define child classes 
+	Triangle,Rect and Circle
+
+create necessary jar file and documentation.
+
+
+on Client side:
+
+define "ShapeDemo" class with main function
+
+create an array of "Shape" with 3 elements. 
+store objects of Triangle,Rect and Circle in this array. now traverse the array and invoke "draw()" of each child.
+*/
+
+*******************DEVELOPER CODE************************
+
+/**
+ * 
+ */
+package Devpack;
+
+/**
+ * @author kalpesh
+ *
+ */
+
+public interface Shape {
+	
+	public void draw();
+
+}
+
+/**
+ * 
+ */
+package Devpack;
+
+/**
+ * @author kalpesh
+ *
+ */
+public class Triangle implements Shape {
+	
+	public void draw() {
+		System.out.println("Draw Triangle");
+	}
+}
+
+/**
+ * 
+ */
+package Devpack;
+
+/**
+ * @author kalpesh
+ *
+ */
+public class Rectangle implements Shape {
+	
+	public void draw() {
+		System.out.println("Draw Rectangle");
+	}
+}
+
+/**
+ * 
+ */
+package Devpack;
+
+/**
+ * @author kalpesh
+ *
+ */
+public class Circle implements Shape {
+	
+	public void draw() {
+		System.out.println("Draw Circle");
+	}
+	
+}
+
+**************************CLIENT CODE****************************
+
+package Clientpro;
+
+import Devpack.*;
+
+public class ShapeDemo {
+	
+	static void perform (Shape ref) {
+		ref.draw();
+	}
+
+	public static void main(String[] args) {
+		perform(new Triangle());
+		perform(new Rectangle());
+		perform(new Circle());
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.2) public interface MouseHandler
+{
+	void mouseClicked();
+	void mousePressed();
+	void mouseReleased();
+}
+public interface WindowHandler
+{
+	void windowClosing();
+	void windowClosed();
+}
+
+public class WindowGUIApp implements MouseHandler,WindowHandler
+{
+}
+public class GUIDemo
+{
+	main()
+	{
+		create the object of WindowGUIApp and invoke all the methods
+	}
+}
+*/
+
+package Assignment_Day6;
+
+interface MouseHandler {
+
+	void mouseClicked();
+	void mousePressed();
+	void mouseReleased();
+}
+
+interface WindowHandler {
+
+	void windowClosing();
+	void windowClosed();
+}
+
+class WindowGUIApp implements  MouseHandler,WindowHandler {
+
+	public void windowClosing() {
+		System.out.println("Window Is Closing");
+	}
+	public void windowClosed() {
+		System.out.println("Window Is Closed Now");
+	}
+	public void mouseClicked() {
+		System.out.println("Mouse Clicked");
+	}
+	public void mousePressed() {
+		System.out.println("Mouse Pressed");
+	}
+	public void mouseReleased() {
+		System.out.println("Mouse Released");
+	}
+}
+
+public class MHandler {
+
+	public static void main(String[] args) {
+
+		WindowGUIApp w1=new WindowGUIApp();
+		w1.windowClosed();
+		w1.windowClosing();
+		w1.mouseClicked();
+		w1.mousePressed();
+		w1.mouseReleased();
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.3) on Developer side create the following interface
+	create necessary jar and docs
+
+public interface PersistenceMechanism
+{
+	void writeData(String ref);
+	String readData();
+}
+
+
+create following classes on client side
+
+class FileSystem implements PersistenceMechanism
+{
+	public void writeData(String ref)
+	{
+		// how to write data inside FileSystem
+	}
+	public String readData()
+	{
+		// how to read data from FileSystem
+	}
+}
+
+class DatabaseSystem implements PersistenceMechanism
+{
+	public void writeData(String ref)
+	{
+		// how to write data inside DatabaseSystem
+	}
+	public String readData()
+	{
+		// how to read data from DatabaseSystem
+	}
+}
+
+class BigdataSystem implements PersistenceMechanism
+{
+	public void writeData(String ref)
+	{
+		// how to write data inside BigdataSystem
+	}
+	public String readData()
+	{
+		// how to read data from BigdataSystem
+	}
+}
+
+create one more class "Demo" and in its main function create array of "PersistenceMechanism" interface,
+store all the child class objects , traverse the array and invoke only "BigdataSystem" class "writeData" and "readData" methods.
+*/
+
+*******************DEVELOPER CODE************************
+
+ */
+package devpro;
+
+/**
+ * @author kalpesh
+ */
+public interface PersistenceMechanism {
+	
+	void writeData(String ref);
+	String readData();
+}
+
+**************************CLIENT CODE****************************
+
+package clientpro;
+import java.util.*;
+import devpro.PersistenceMechanism;
+
+class FileSystem implements PersistenceMechanism {
+
+	String ref;
+
+	public void writeData(String ref) {
+
+		this.ref=ref;
+	
+	}
+	public String readData() {
+
+		return ref;
+	}
+
+}
+
+class DatabaseSystem implements PersistenceMechanism {
+	
+	String ref;
+	
+	public void writeData(String ref) {
+
+		this.ref=ref;
+	}
+
+	public String readData() {
+
+		return ref;
+	}
+
+}
+
+class BigdataSystem implements PersistenceMechanism {
+
+	String ref;
+
+	public void writeData(String ref) {
+
+		this.ref=ref;
+	}
+
+	public String readData() {
+
+		return ref;
+	}
+
+}
+
+
+public class Demo {
+
+		
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		PersistenceMechanism arr[]=new PersistenceMechanism[3];
+		
+		
+		arr[0]=new FileSystem();
+		arr[1]=new DatabaseSystem();
+		arr[2]=new BigdataSystem();
+		
+		for(int i=0;i<arr.length;i++) {       
+
+			String m=sc.nextLine();
+			arr[i].writeData(m);			
+			
+		}
+		
+		for(int j=0;j<arr.length;j++) {
+
+			System.out.println(arr[j].readData());
+		}
+		
+		
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.4) on the developer side create following interface:
+	create necessary jar file and documentation
+
+interface Vehicle { 
+      
+    // all are the abstract methods. 
+    void changeGear(int a); 
+    void speedUp(int a); 
+    void applyBrakes(int a); 
+} 
+
+
+on the client side define following classes:
+
+class FourWheeler implements Vehicle
+{
+	public void changeGear(int a)
+	{
+		// how to change gear in FourWheeler
+	}
+	public void speedUp(int a)
+	{
+		// how to speed up FourWheeler
+	}
+	public void applyBrakes(int a)
+	{
+		// how to apply brakes of FourWheeler
+	}
+}
+
+
+class TwoWheeler implements Vehicle
+{
+	public void changeGear(int a)
+	{
+		// how to change gear in TwoWheeler
+	}
+	public void speedUp(int a)
+	{
+		// how to speed up TwoWheeler
+	}
+	public void applyBrakes(int a)
+	{
+		// how to apply brakes of TwoWheeler
+	}
+}
+
+create one more class "Demo" with
+	main and static perform method
+while calling perform pass any implementation of "Vehicle" and invoke the methods polymorphically.
+*/
+
+*******************DEVELOPER CODE************************
+
+package devpro;
+
+
+/**
+ * @author kalpesh
+ */
+public interface Vehicle { 
+    
+    void changeGear(int a); 
+    void speedUp(int a); 
+    void applyBrakes(int a); 
+} 
+
+
+**************************CLIENT CODE****************************
+
+package clientpro;
+
+import devpro.Vehicle;
+
+class FourWheeler implements Vehicle {
+
+	public void changeGear(int a) {
+
+		System.out.println("Fourweheeler Gear changed to a "+a);
+	}
+
+	public void speedUp(int a) {
+
+		System.out.println("Fourwheeler Vehicle speedup to a "+a);
+	}
+
+	public void applyBrakes(int a) {
+
+		System.out.println("Fourwheeler Vehicle apply break");
+	}
+
+}
+
+
+class TwoWheeler implements Vehicle {
+
+	public void changeGear(int a) {
+
+		System.out.println("Two wheeler Gear changed to a "+a);
+	}
+
+	public void speedUp(int a) {
+
+		System.out.println("Two wheeler Vehicle speedup to a "+a);
+	}
+
+	public void applyBrakes(int a) {
+
+		System.out.println("Two wheeler Vehicle apply break");
+	}
+
+}
+
+public class VehicleDemo {
+
+	
+	public static void main(String[] args) {
+		
+		Vehicle v1=new FourWheeler();
+		v1.changeGear(2);
+		v1.speedUp(70);
+		v1.applyBrakes(0);
+		
+		System.out.println("");
+		
+		Vehicle v2=new TwoWheeler();
+		v1.changeGear(3);
+		v1.speedUp(40);
+		v1.applyBrakes(0);
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.5) create a new project
+	create a package "weaponpack"
+		inside this package
+
+	public class Weapon
+	{
+		public void attack()
+		{
+		}
+	}
+	public class Sword extends Weapon
+	{
+		override attack
+	}
+	public class Bomb extends Weapon
+	{
+		override attack
+	}
+	public class Gun extends Weapon
+	{
+		override attack
+			+
+		public void fillBullets()
+		{
+			S.o.p("filling bullets");
+		}
+	}
+
+	public class Soldier
+	{
+		// define "fight" method in such a way that given any specific weapon, it should be able to attack
+		public void fight(Weapon ref)
+		{
+			ref.attack();
+			// make sure you invoke "fillBullets" also along with "attack" and that shouldn't give "ClassCastException"
+		}
+
+	}
+	public class WeaponDemo
+	{
+		p.s.v.main()
+		{
+			//invoke "fight" method of Soldier class
+			Soldier s1=new Soldier();
+			s1.fight(new Gun());
+		}
+	}
+*/
+
+package Assignment_Day6;
+
+ class WeaponDemo {
+
+	public void attack() {
+
+		System.out.println("ATTACK");
+    		}
+	}
+
+ class Sword extends WeaponDemo {
+
+		public void attack() {
+
+			System.out.println("Attack With Sword");
+		}
+	}
+
+ class Bomb extends WeaponDemo {
+
+		public void attack() {
+
+			System.out.println("Attack With Bomb");
+		}
+	}
+
+ class Gun extends WeaponDemo {
+
+		public void attack() {
+
+			System.out.println("Attack With Gun");
+		}
+
+		public void fillBullets() {
+
+			System.out.println("Filling Bullets");
+		}
+	}
+
+ class Soldier {
+
+		public void fight(WeaponDemo ref) {
+
+			ref.attack();
+			if(ref instanceof Gun) {
+
+				Gun g1=(Gun)ref;
+				g1.fillBullets();
+			}
+		}
+	}
+
+public class Weapon{
+
+	public static void main(String[] args) {
+
+		Soldier s1=new Soldier();
+		s1.fight(new Gun());
+	}
+}
+
+	
