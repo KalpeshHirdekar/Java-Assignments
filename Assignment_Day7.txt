@@ -1,0 +1,840 @@
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.1) public abstract class Course
+{
+	public void start()
+	{
+		// start process
+	}
+	public abstract double getFee();
+	public abstract void evaluate();
+}
+
+define child classes of above abstract class
+	DACDBDACourse extends Course
+	MSCitCourse extends Course
+
+show late binding with the help of "perform()" method.
+*/
+
+package Assignment_Day7;
+
+public abstract class Course {
+
+	public void start() {
+
+		System.out.println("Start The Process");
+	}
+
+	public abstract double getFree();
+	public abstract void evaluate();
+}
+
+class DACDBDACourse extends Course {
+
+	public double getFree() {
+		System.out.println("getFree In DBDADACCourse");
+		return 0;
+	}
+
+	public void evaluate() {
+
+		System.out.println("Evalute In DBDADACCourse");
+	}
+	
+}
+
+class MSCitCourse extends Course {
+
+	public double getFree() {
+		System.out.println("getFree In MSCitCourse");
+		return 0;
+	}
+
+}
+
+
+public class CourseDemo
+{
+	static void perform(Course ref) {
+
+		ref.start(); //late binding
+		ref.getFree(); //late binding
+		ref.evaluate(); //late binding
+
+	}
+	
+	public static void main(String[] args) {
+
+		perform(new DACDBDACourse ());
+		perform(new MSCitCourse());
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.2) abstract class Beverages {
+
+	// Defined
+	public void addMilk() {
+
+	}
+
+	// abstract
+	abstract void addIngredients();
+}
+
+class Coffee extends Beverages
+{
+	void addIngredients()
+	{
+		// ingredients for Coffee
+	}
+	// addMilk inherited
+}
+class Tea extends Beverages
+{
+	void addIngredients()
+	{
+		// ingredients for Tea
+	}
+	// addMilk inherited
+}
+class FruitJuice extends Beverages
+{
+	void addIngredients()
+	{
+		// ingredients for FruitJuice
+	}
+	// addMilk inherited
+}
+
+create Array of Beverages class and store all the child classes objects.
+now traverse the array and invoke all the functions.
+*/
+
+package Assignment_Day7;
+
+
+abstract class Beverages  {
+
+	public void addMilk() {
+
+         System.out.println("milk is added");
+
+	}
+
+	// abstract
+	abstract void addIngredients();
+}
+
+class Coffee extends Beverages {
+
+	void addIngredients() {
+
+		System.out.println("add sugar");
+		System.out.println("add coffee");
+
+	}
+	// addMilk inherited
+}
+
+class Tea extends Beverages {
+
+	void addIngredients() {
+
+		System.out.println("add sugar");
+		System.out.println("add tea powder");
+
+	}
+	// addMilk inherited
+}
+
+class FruitJuice extends Beverages {
+
+	void addIngredients() {
+
+		System.out.println("add sugar");
+		System.out.println("add fruits");
+	}
+	// addMilk inherited
+}
+
+public class BeveragesDemo {
+
+	public static void main(String args[]) {
+	
+	Beverages arr[]=new Beverages[3];
+	arr[0]=new Tea();
+	arr[1]=new Coffee();
+	arr[2]=new FruitJuice();
+	
+	for(int i=0;i<arr.length;i++) {
+
+		arr[i].addMilk();
+		arr[i].addIngredients();
+	}
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.3) create abstract class "Shape" with
+	a contract "draw()" and concrete behaviour "show()"
+
+create 3 child classes
+	Triangle, Rectangle and Circle
+
+define a class "ShapeDemo" with main
+inside main create an array of "Shape" of 3 elements. 
+Store all the child class objects inside the array, traverse it and invoke "draw()" and "show()" methods polymorphically.
+*/
+
+package Assignment_Day7;
+
+
+
+abstract class Shape {
+
+	abstract void draw(){};
+	
+	void show() {
+
+		System.out.println("Show In Shape");
+	}
+}
+
+class Triangle extends Shape {
+
+	void draw() {
+
+		System.out.println("Draw In Triangle");
+	}
+
+	void show() {
+
+		System.out.println("Show In Triangle");
+	}
+}
+
+class Rectangle extends Shape {
+
+	void draw() {
+
+		System.out.println("Draw In Recangle");
+	}
+	
+	void show() {
+
+		System.out.println("Show In Rectangle");
+	}
+}
+
+class Circle extends Shape {
+
+	void draw() {
+
+		System.out.println("Draw In Circle");
+	}
+	
+	void show() {
+
+		System.out.println("Show In Circle");
+	}
+}
+
+
+
+public class ShapeDemo {
+
+	public static void main(String[] args) {
+		
+		Shape s1[]=new Shape[3];
+		s1[0]=new Triangle();
+		s1[1]=new Rectangle();
+		s1[2]=new Circle();
+		for(int i=0;i<s1.length;i++) {
+
+			s1[i].draw();
+			s1[i].show();
+		}
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.4) public class UIComponent
+{
+}
+public class Button extends UIComponent
+{
+}
+public class TextField extends UIComponent
+{
+}
+public class CheckBox extends UIComponent
+{
+}
+public abstract class UIComponentCreator
+{
+	public void show(String type)
+	{
+		UIComponent comp=createUIComponent(type);
+		add(comp);
+	}
+	public void add(UIComponent component)
+	{
+		System.out.prinlnt("Added the component\t"+component);
+	}
+	public abstract UIComponent createUIComponent(String type);
+}
+
+create 3 child classes of "UIComponentCreator"
+	WindowsUIComponentCreator, LinuxUIComponentCreator and MacUIComponentCreator
+ in all these classes "createUIComponent()" method must be defined in such a way that whatever type is passed as per this it must return a specific UIComponent. 
+e.g. if "button" is passed , it should return "Button" class object   or if "textfield" is passed , it should return "TextField" class object.
+
+create a class UIComponentCreatorDemo with main function
+inside main function
+	create objects of WindowsUIComponentCreator, LinuxUIComponentCreator and MacUIComponentCreator classes and 
+invoke "createUIComponent()" ,"add()" and "show()" methods.
+*/
+
+package Assignment_Day7;
+
+
+class LinuxUIComponentCreator extends UIComponentCreator {
+
+	public UIComponent CreateUIComponent(String type) {
+
+		if("Button".equalsIgnoreCase(type)) {
+			return new Button();
+		}
+		else if("TextField".equalsIgnoreCase(type)) {
+
+			return new TextField();
+		}
+		else {
+
+			return new CheckBox();
+		}
+	}
+}
+
+class MacUIComponentCreator extends UIComponentCreator {
+
+	public UIComponent CreateUIComponent(String type) {
+
+		if("Button".equalsIgnoreCase(type)) {
+
+			return new Button();
+		}
+		else if("TextField".equalsIgnoreCase(type)) {
+
+			return new TextField();
+		}
+		else {
+
+			return new CheckBox();
+		}
+	}
+}
+
+public class UIComponentDemo {
+
+	public static void main(String args[]) {
+
+		WindowsUIComponentCreator windowsUIComponentCreator = new WindowsUIComponentCreator();
+		windowsUIComponentCreator.show("button");
+		windowsUIComponentCreator.show("textFiELD");
+		
+		LinuxUIComponentCreator linuxUIComponentCreator = new LinuxUIComponentCreator();
+		linuxUIComponentCreator.show("textfield");
+		
+		MacUIComponentCreator macUIComponentCreator = new MacUIComponentCreator();
+		macUIComponentCreator.show("checkbox");
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.5) accept 3 numbers through command line arguments and display their sum.
+*/
+
+package Assignment_Day7;
+
+
+public class ArgumentDemo {
+
+	public static void main(String[] args) {
+		int sum=0;
+		for(int i=0;i<args.length;i++) {
+
+			System.out.println(args[i]);
+			sum += Integer.parseInt(args[i]);
+		}
+		
+		
+		
+		System.out.println("Sum :"+sum);
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.6) on developer side:
+
+create interface "Shape" with "void draw();" method.
+
+now define child classes 
+	Triangle,Rect and Circle
+
+
+
+on Client side:
+
+define "ShapeDemo" class with main and perform functions
+
+define perform function in such a way that given any shape it can invoke "draw()" of it.
+*/
+
+package Assignment_Day7;
+
+
+*******************DEVELOPER CODE************************
+
+interface Shape {
+
+	void draw();
+}
+
+class Triangle implements Shape {
+
+	public void draw() {
+
+		System.out.println(" Triangle drawn ....");
+	}
+}
+
+class Circle implements Shape {
+
+	public void draw() {
+
+		System.out.println(" Circle drawn ....");
+	}
+}
+
+class Rectangle implements Shape {
+
+	public void draw() {
+
+		System.out.println(" Rectangle drawn ....");
+	}
+
+}
+
+*********************CLIENT CODE*************************
+
+public class Demo {
+	
+	static void perform(Shape shape) {
+
+		shape.draw();
+	}
+
+	public static void main(String args[]) {
+
+		perform(new Triangle());
+		perform(new Rectangle());
+		perform(new Circle());
+
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.7) public interface PizzaIngredientFactory
+{
+	public Dough createDough();
+	public Sauce createSauce();
+	public Cheese createCheese();
+	public Pepperoni createPepperoni();
+	public Clams createClams();
+}
+define 2 implementations 
+	USPizzaIngredientFactory and IndianPizzaIngredientFactory
+
+create an array of "PizzaIngredientFactory" , store all the implemenations object inside it, 
+traverse the array and invoke all the methods.
+*/
+
+package Assignment_Day7;
+
+
+interface PizzaIngredientFactory {
+
+	Dough createDough();
+	Sauce createSauce();
+	Cheese createCheese();
+	Pepperoni createPepperoni();
+	Clams createClams();
+
+}
+
+class USPizzaIngredientFactory implements PizzaIngredientFactory {
+	public Dough createDough() {
+
+		return new Dough();
+	}
+
+	public Sauce createSauce() {
+
+		return new Sauce();
+	}
+
+	public Cheese createCheese() {
+
+		return new Cheese();
+	}
+
+	public Pepperoni createPepperoni() {
+
+		return new Pepperoni();
+	}
+
+	public Clams createClams() {
+
+		return new Clams();
+	}
+}
+
+class IndianPizzaIngredientFactory implements PizzaIngredientFactory {
+
+	public Dough createDough() {
+
+		return new Dough();
+	}
+	
+	public Sauce createSauce() {
+
+		return new Sauce();
+	}
+
+	public Cheese createCheese() {
+
+		return new Cheese();
+	}
+
+	public Pepperoni createPepperoni() {
+
+		return new Pepperoni();
+	}
+
+	public Clams createClams() {
+
+		return new Clams();
+	}
+}
+
+class Dough {
+
+	public String toString() {
+
+		return " Dough is Ready ";
+	}
+}
+
+class Sauce {
+
+	public String toString() {
+
+		return " Sauce is Ready ";
+
+	}
+
+}
+
+class Cheese {
+
+	public String toString() {
+
+		return " Cheese is Ready ";
+	}
+
+}
+
+class Pepperoni {
+
+	public String toString() {
+
+		return " Pepperoni is Ready ";
+	}
+
+} 
+
+class Clams {
+
+	public String toString() {
+
+		return " Clams is Ready ";
+	}
+}
+
+public class Demo {
+
+	public static void main(String args[]) {
+
+		PizzaIngredientFactory pizzaIngredientFactory[] = new PizzaIngredientFactory[2];
+		pizzaIngredientFactory[0] = new IndianPizzaIngredientFactory();
+		pizzaIngredientFactory[1] = new USPizzaIngredientFactory();
+		for(int i=0; i<pizzaIngredientFactory.length; i++) {
+
+			System.out.println(pizzaIngredientFactory[i].createDough());
+			System.out.println(pizzaIngredientFactory[i].createSauce());
+			System.out.println(pizzaIngredientFactory[i].createCheese());
+			System.out.println(pizzaIngredientFactory[i].createPepperoni());
+			System.out.println(pizzaIngredientFactory[i].createClams());
+		}
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.8) public class Course
+{
+	public void start()
+	{
+	}
+	public void stop()
+	{
+	}
+}
+now define 3 child classes 
+	DACDBDACourse,MSCit and Basic
+
+inside "DACDBDACourse" class define one more method "public void orientation()"
+
+define one more class "CourseDemo" with main function.
+inside main function
+	create an array of "Course" of 3 elements.
+store all the child classes objects. Traverse the array and invoke "start()" and "stop()" of all the objects.
+Also invoke "orientation()" method wherever object of "DACDBDACourse" is present.
+*/
+
+package Assignment_Day7;
+
+
+class Course {
+
+	public void start() {
+
+		System.out.println(" Course started .....");
+	}
+	
+	public void stop() {
+
+		System.out.println(" Course Stopped .....");
+	}
+}
+
+class DACDBDA extends Course {
+
+	public void start() {
+
+		System.out.println("DACDBDA Course started .....");
+	}
+
+	public void stop() {
+
+		System.out.println("DACDBDA Course Stopped .....");
+	}
+
+	public void orientation() {
+
+		System.out.println("DACDBA orientation ....");
+	}
+}
+
+class MSCit extends Course {
+
+	public void start() {
+
+		System.out.println("MSCit Course started .....");
+	}
+
+	public void stop() {
+
+		System.out.println("MSCit Course Stopped .....");
+	}
+}
+
+class Basic extends Course {
+
+	public void start() {
+		System.out.println("MSCit Course started .....");
+	}
+	
+	public void stop() {
+
+		System.out.println("MSCit Course Stopped .....");
+	}
+}
+
+public class Demo {
+	
+	public static void main(String args[]) {
+
+		Course course[] = new Course[3];
+		course[0] = new DACDBDA();
+		course[1] = new MSCit();
+		course[2] = new Basic();
+		for(int i=0; i<course.length; i++) {
+
+			course[i].start();
+			if(course[i] instanceof DACDBDA) {
+
+				DACDBDA ref = (DACDBDA)course[i];
+				ref.orientation();
+			}
+			course[i].stop();
+		}
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.9) 	Interface Course
+{
+	void start();
+	void stop();
+}
+now define 3 implementations: 
+	DACDBDACourse,MSCit and Basic
+
+inside "DACDBDACourse" class define one more method "public void orientation()"
+
+define one more class "CourseDemo" with main function and "public static void show()" method.
+from main function
+	invoke "show()" method by passing object of any implementations and invoke "start()" and "stop()" methods.
+Also invoke "orientation()" method whenever object of "DACDBDACourse" is passed.
+*/
+
+
+package Assignment_Day7;
+
+interface Course {
+
+	void start();
+	void stop();
+}
+
+class DACDBDA implements Course {
+
+	public void start() {
+
+		System.out.println("DACDBDA Course started .....");
+	}
+
+	public void stop() {
+
+		System.out.println("DACDBDA Course Stopped .....");
+	}
+	
+	public void orientation() {
+
+		System.out.println("DACDBA orientation ....");
+	}
+}
+
+class MSCit implements Course {
+
+	public void start() {
+
+		System.out.println("MSCit Course started .....");
+	}
+
+	public void stop() {
+
+		System.out.println("MSCit Course Stopped .....");
+	}
+}
+
+class Basic implements Course {
+
+	public void start() {
+
+		System.out.println("MSCit Course started .....");
+	}
+
+	public void stop() {
+
+		System.out.println("MSCit Course Stopped .....");
+	}
+}
+
+public class Demo {
+
+	public static void show(Course course) {
+
+		course.start();
+		if(course instanceof DACDBDA) {
+
+			DACDBDA ref = (DACDBDA)course;
+			ref.orientation();
+		}
+
+		course.stop();
+	}
+
+	public static void main(String args[]) {
+
+		show(new Basic());
+		show(new MSCit());
+		show(new DACDBDA());
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/*
+Q.10) create a class "Demo" with "disp()" which can take variable number of int arguments and display the sum of all numbers passed to it.
+invoke "disp()" from main function.
+*/
+
+package Assignment_Day7;
+
+
+public class Demo {
+
+	static void display(int ...nums) {
+
+		int sum = 0;
+		for(int i:nums) {
+
+			sum += i;
+		}
+
+		System.out.println("Sum : "+sum);
+	}
+
+	public static void main(String args[]) {
+
+		display(1000,200,30);
+		display(30,200,1000);
+	}
+
+}
