@@ -1,0 +1,148 @@
+
+
+1) define a functional interface "First" with an abstract method "void disp1()".
+define a class "Second" with a method "void fun1()"
+
+inside main function create a method reference for "First" and invoke "fun1" of "Second"
+
+CODE:
+
+package MethodReference;
+
+@FunctionalInterface
+interface First {
+	void disp1();
+}
+
+class Second {
+	public void fun1() {
+		System.out.println("Inside fun1 me");
+	}
+}
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		Second s = new Second();
+		First ref = s::fun1;
+		ref.disp1();
+
+	}
+
+}
+
+-----------------------------------------------------------------------------------------
+
+2) define a functional interface "Third" with an abstract method "void show(int num)".
+define a class "Sample" with a method "void disp(int num)"
+
+inside main function create a method reference for "Third" and 
+invoke "disp" of "Sample" by passing a value "500".
+
+CODE:
+
+package MethodReference;
+
+interface Third {
+	void show(int num);
+}
+
+class Sample {
+	void disp (int num) {
+		System.out.println("In disp " + num);
+	}
+}
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		Sample s = new Sample();
+		Third ref = s::disp;
+		ref.show(500);
+
+	}
+
+}
+
+-----------------------------------------------------------------------------------------
+
+3) define a functional interface "Fifth" with an abstract method "int add(int a,int b)"
+define a class Math1 with a method "int calc(int a,int b)" 
+
+inside main function invoke "calc" method with the help of
+	a) lamdba expression
+	b) method reference
+
+CODE:
+
+package MethodReference;
+
+import java.util.*;
+
+interface Fifth {
+	int add (int a, int b);
+}
+
+class Math1 {
+	int calc (int a, int b) {
+		System.out.println("Using Method Reference");
+		return a+b;
+	}
+}
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter two numbers:");
+		
+		int num1 = sc.nextInt();
+		int num2 = sc.nextInt();
+		
+		sc.close();
+		
+		Math1 m = new Math1();
+		
+		Fifth ref1 = (a,b) -> {System.out.println("Using Lambda"); return m.calc(a, b);};
+		System.out.println( ref1.add(num1, num2));
+		
+		ref1 = m::calc;
+		System.out.println(ref1.add(num1, num2));
+	}
+
+}
+
+-----------------------------------------------------------------------------------------
+
+4) define a functional interface "Sixth" with an abstract method "void disp5()".
+define a class "Sample" with a static method "void fun1()"
+
+inside main function create a method reference for "Sixth" and invoke "fun1" of "Sample"
+
+CODE:
+
+package MethodReference;
+
+interface Sixth {
+	void disp5();
+}
+
+class Sample1 {
+	static void fun1() {
+		System.out.println("Inside fun1 method");
+	}
+}
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		
+		Sixth ref = Sample1::fun1;
+		ref.disp5();
+
+	}
+
+}
+
+-----------------------------------------------------------------------------------------
