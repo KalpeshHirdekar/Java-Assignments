@@ -16,7 +16,7 @@ In case of a positive value, it should simply return the double value.
 
 Now define class "MyCalcApp" (MyCalcApp.java)
 In this class, you accept a number from the user and pass that no. to
-call double () method which is mentioned above.
+call a double () method which is mentioned above.
 
 CODE:
 
@@ -80,16 +80,16 @@ public class MyCalcApp {
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-2) on the developer side create an exception:
+Q.2) on the developer side create an exception:
 	NumberNotDivisibleBySevenException
 	as a checked exception
 
-create necessary jar and documentation.
+create the necessary jar and documentation.
 
 on client side
 	public class MyMath class with 
 		public void disp(int num)
-this disp() method will check if the number passed is not divisible by 7 , 
+this disp() method will check if the number passed is not divisible by 7, 
 it will raise "NumberNotDivisibleBySevenException" or else it will simply display the number passed.
 	[ this method shouldn't handle the exception]
 
@@ -236,13 +236,13 @@ on client side
 public class Authenticator
 	with
 a parameterized constructor which takes String as a password.
-this class also will have "done()" method with "successful authentication" message.
-Parameterized constructor should check the length of the password passed 
-if it is less than 5 or more that 9 , it should raise "InvalidLengthException" 
+this class also will have a "done()" method with a "successful authentication" message.
+The parameterized constructor should check the length of the password passed 
+if it is less than 5 or more than 9 , it should raise "InvalidLengthException" 
 	[ constructor shouldn't handle the exception]
 
-create a class "Demo" with main
-	inside main function create the object of "Authenticator" class and invoke "done()" method.
+create a class "Demo" with the main
+	inside the main function create the object of the "Authenticator" class and invoke the "done()" method.
 
 CODE:
 
